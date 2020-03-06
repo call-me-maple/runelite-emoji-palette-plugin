@@ -3,6 +3,7 @@ package hjdarnel.emojipalette;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
@@ -31,18 +32,18 @@ public class EmojiPalettePlugin extends Plugin
 	private static final Pattern TAG_REGEXP = Pattern.compile("<[^>]*>");
 
 	@Override
-	protected void startUp() throws IOException
+	protected void startUp() throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException
 	{
 		createEmojiPanel();
 	}
 
 	@Override
-	protected void shutDown() throws Exception
+	protected void shutDown()
 	{
 		clientToolbar.removeNavigation(navButton);
 	}
 
-	private void createEmojiPanel() throws IOException
+	private void createEmojiPanel() throws IOException, ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException
 	{
 		emojiPanel = injector.getInstance(EmojiPanel.class);
 		emojiPanel.init();
